@@ -16,7 +16,7 @@ urls = [
 output_file = "iptv6.txt"
 
 # 需要删除的关键词列表
-exclude_keywords = ["咪咕", "炫舞", "埋堆堆", "斗鱼", "虎牙", "B站", "CETV", "叫啥", "自贸", "英雄联盟音乐节", "漫游世界", "高清娱乐", "风尚音乐", "电子竞技", "百变课堂"]
+exclude_keywords = ["咪咕", "炫舞", "埋堆堆", "斗鱼", "虎牙", "B站", "CETV", "叫啥", "自贸", "英雄联盟音乐节", "漫游世界", "高清娱乐", "风尚音乐", "电子竞技", "百变课堂", "购物", "未知", "重温经典"]
 
 # 频道名称的替换规则
 replace_rules = {
@@ -116,7 +116,7 @@ def clean_group_title(category):
     category = category.replace("频道", "")
 
     # 将 NewTV 分类改为数字
-    if category == "NewTV":
+    if category in ["NewTV", "体验"]:
         return "数字"
 
     # 合并分类为地区
@@ -133,6 +133,8 @@ def apply_replace_rules(content):
 
 def extract_number_from_channel_name(channel_name):
     """从频道名称中提取数字，确保正确排序"""
+    if not channel_name:
+        return float('inf')  # 如果频道名称为空或无效，放在最后
     match = re.search(r'(\d+)', channel_name)
     return int(match.group(1)) if match else float('inf')  # 如果没有数字，放在最后
 
@@ -164,16 +166,23 @@ def format_and_merge_sources(urls, output_file):
                         channel_name = cleaned_line.split(",")[1].strip()  # 获取频道名称
                 elif cleaned_line.startswith("http"):
                     # 统计频道名称出现次数
-                    channel_name_count[channel_name] += 1
-                    if channel_name_count[channel_name] <= 6:
-                        # 如果频道名称出现次数不超过6次，添加到分类中
-                        category_channels[category].append((channel_name, cleaned_line))
-                    else:
-                        print(f"跳过频道: {channel_name}，已超过6次")
+                    if channel_name:  # 确保频道名称有效
+                        channel_name_count[channel_name] += 1
+                        if channel_name_count[channel_name] <= 6:
+                            # 如果频道名称出现次数不超过6次，添加到分类中
+                            category_channels[category].append((channel_name, cleaned_line))
+                        else:
+                            print(f"跳过频道: {channel_name}，已超过6次")
 
     # 删除4KIPV4和4K分类
     category_channels.pop("4KIPV4", None)
     category_channels.pop("4K", None)
+
+    # 将"重温经典"频道移到"数字"分类
+    if "重温经典" in category_channels:
+        classic_channels = [item for item in category_channels["重温经典"]]
+        category_channels["数字"] = category_channels.get("数字", []) + classic_channels
+        category_channels["重温经典"] = []  # 清空原来的分类
 
     # 合并央视分类的CHC相关频道到数字分类
     chc_channels = []
@@ -201,7 +210,7 @@ def format_and_merge_sources(urls, output_file):
             if key in category_channels:
                 final_content.append(f"{key},#genre#")
                 channels = category_channels.pop(key)
-                channels.sort(key=lambda x: extract_number_from_channel_name(x[0]))
+                channels.sort(key=lambda x: extract_number_from_channel_name(x[0]) if x[0] else float('inf'))
                 for channel_name, link in channels:
                     final_content.append(f"{channel_name},{link}")
 
@@ -210,7 +219,7 @@ def format_and_merge_sources(urls, output_file):
             if category == "温馨提示":
                 continue  # 跳过温馨提示
             final_content.append(f"{category},#genre#")
-            channels.sort(key=lambda x: extract_number_from_channel_name(x[0]))
+            channels.sort(key=lambda x: extract_number_from_channel_name(x[0]) if x[0] else float('inf'))
             for channel_name, link in channels:
                 final_content.append(f"{channel_name},{link}")
 
