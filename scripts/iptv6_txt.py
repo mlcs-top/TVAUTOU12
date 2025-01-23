@@ -5,7 +5,7 @@ from collections import defaultdict
 # IPTV源列表
 urls = [
     "https://raw.githubusercontent.com/YueChan/live/master/APTV.m3u",
-    "https://raw.githubusercontent.com/BurningC4/Chinese-IPTV/master/TV-IPV4.m3u",
+    "https://raw.githubusercontent.com/387673116/Tvbox/master/iptv4.m3u",
     "https://raw.githubusercontent.com/fanmingming/live/master/tv/m3u/ipv6.m3u",
     "https://raw.githubusercontent.com/YanG-1989/m3u/master/Gather.m3u",
     "https://raw.githubusercontent.com/YueChan/live/master/Global.m3u",
@@ -39,7 +39,7 @@ replace_rules = {
     "CCTV 16 奥林匹克,": "CCTV-16,",
     "CCTV 17 农村农业,": "CCTV-17,", 
     "CCTV-4K,": "CCTV-4K,",
-    "CCTV-4 欧洲,": "CCTV-4,",
+    "CCTV-4 欧洲": "CCTV-4",
     "CCTV-1 综合": "CCTV-1",
     "CCTV-2 财经": "CCTV-2",
     "CCTV-3 综艺": "CCTV-3",
