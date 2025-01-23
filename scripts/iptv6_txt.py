@@ -16,7 +16,7 @@ urls = [
 output_file = "iptv6.txt"
 
 # 需要删除的关键词列表
-exclude_keywords = ["咪咕", "炫舞", "埋堆堆", "斗鱼", "虎牙", "B站", "CETV", "叫啥", "自贸", "英雄联盟音乐节", "漫游世界", "高清娱乐", "风尚音乐", "电子竞技", "百变课堂", "购物", "未知", "重温经典", "快乐购"]
+exclude_keywords = ["咪咕", "炫舞", "埋堆堆", "斗鱼", "虎牙", "B站", "CETV", "叫啥", "自贸", "英雄联盟音乐节", "漫游世界", "高清娱乐", "风尚音乐", "电子竞技", "百变课堂", "购物", "未知", "重温经典", "快乐购", "CGTN"]
 
 # 频道名称的替换规则
 replace_rules = {
@@ -40,25 +40,25 @@ replace_rules = {
     "CCTV 17 农村农业,": "CCTV-17,", 
     "CCTV-4K,": "CCTV-4K,",
     "CCTV-4 欧洲,": "CCTV-4,",
-    "CCTV-1 综合,": "CCTV-1,",
-    "CCTV-2 财经,": "CCTV-2,",
-    "CCTV-3 综艺,": "CCTV-3,",
-    "CCTV-4 中文国际,": "CCTV-4,",
-    "CCTV-5 体育,": "CCTV5,",
-    "CCTV-5+ 体育赛事,": "CCTV-5+,",
-    "CCTV-6 电影,": "CCTV-6,",
-    "CCTV-7 国防军事,": "CCTV-7,",
-    "CCTV-8 电视剧,": "CCTV-8,",
-    "CCTV-9 纪录,": "CCTV-9,",
-    "CCTV-10 科教,": "CCTV-10,",
-    "CCTV-11 戏曲,": "CCTV-11,",
-    "CCTV-12 社会与法,": "CCTV-12,",
-    "CCTV-13 新闻,": "CCTV-13,",
-    "CCTV-14 少儿,": "CCTV-14,",
-    "CCTV-15 音乐,": "CCTV-15,",
-    "CCTV-16 奥林匹克,": "CCTV-16,",
-    "CCTV-17 农村农业,": "CCTV-17,", 
-    "CCTV-17 农业农村,": "CCTV-17,", 
+    "CCTV-1 综合": "CCTV-1",
+    "CCTV-2 财经": "CCTV-2",
+    "CCTV-3 综艺": "CCTV-3",
+    "CCTV-4 中文国际": "CCTV-4",
+    "CCTV-5 体育": "CCTV5",
+    "CCTV-5+ 体育赛事": "CCTV-5+",
+    "CCTV-6 电影": "CCTV-6",
+    "CCTV-7 国防军事": "CCTV-7",
+    "CCTV-8 电视剧": "CCTV-8",
+    "CCTV-9 纪录": "CCTV-9",
+    "CCTV-10 科教": "CCTV-10",
+    "CCTV-11 戏曲": "CCTV-11",
+    "CCTV-12 社会与法": "CCTV-12",
+    "CCTV-13 新闻": "CCTV-13",
+    "CCTV-14 少儿": "CCTV-14",
+    "CCTV-15 音乐": "CCTV-15,",
+    "CCTV-16 奥林匹克": "CCTV-16",
+    "CCTV-17 农村农业": "CCTV-17", 
+    "CCTV-17 农业农村": "CCTV-17", 
     "CCTV1,": "CCTV-1,",
     "CCTV2,": "CCTV-2,",
     "CCTV3,": "CCTV-3,",
